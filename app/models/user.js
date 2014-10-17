@@ -1,11 +1,27 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+		bcrypt	 = require('bcrypt'),
+		database = require('../config/database'),
+		Schema   = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
-	name: String,
-	email: String,
-	password: String,
-	token: String
+	email: {
+		type: String,
+		required: true
+	},
+	password: {
+		type: String,
+		required: true
+	}
 });
 
-module.exports = mongoose.model('User', userSchema);
+userSchema.plugin(database.autoIncrement.plugin, 'User');
+
+userSchema.methods.generateHash = function() {
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+userSchema.methods.verifyPassword = function(password) {
+	return bcrypt.compareSync(password, this.password);
+};
+
+module.exports = database.connection.model('User', userSchema);
