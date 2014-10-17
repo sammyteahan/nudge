@@ -4,11 +4,11 @@
   "author": "Sammy T <sam@lightningkite.com>",
   "description": "A simple reminder app",
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url" : "https://github.com/sammyteahan/nudge.git"
+    "url": "https://github.com/sammyteahan/nudge.git"
   },
   "dependencies": {
     "express": "~4.9.7",
