@@ -3,6 +3,18 @@ var app = express();
 var bodyParser = require('body-parser');
 var router = express.Router();
 
+// jwt integration
+var jwt = require('jwt-simple');
+var payload = {foo: 'bar'};
+var secret = 'supersecretkey';
+
+// encode
+var token = jwt.encode(payload, secret);
+
+//decode 
+var decoded = jwt.decode(token, secret);
+console.log(decoded);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -20,17 +32,14 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-
-//  testing the db
-//	var user = new User();
-//	user.name = 'Sam';
-//	user.save();
-
+ // testing the db
+	// var user = new User();
+	// user.name = 'Sam';
+	// user.save();
 	res.send('Welcome to Nudge');
 });
 
 router.route('/users')
-
 	.post(function(req, res) {
 		var user = new User();
 		user.name = req.body.name;
@@ -41,7 +50,6 @@ router.route('/users')
 			res.send('User Created');
 		});
 	})
-
 	.get(function(req, res) {
 		User.find(function(err, users) {
 			if(err)
