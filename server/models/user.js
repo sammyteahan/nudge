@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose 	 = require('mongoose'),
 		bcrypt	 = require('bcrypt'),
 		database = require('../config/database'),
 		Schema   = mongoose.Schema;

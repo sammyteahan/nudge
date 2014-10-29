@@ -1,7 +1,7 @@
-// jwt integration
-var jwt = require('jwt-simple');
-var payload = {foo: 'bar'};
-var secret = 'supersecretkey123';
+var jwt 	= require('jwt-simple'),
+    app 	= require('../server.js'),
+	payload = {foo: 'bar'},
+	secret  = 'supersecretkey123';
 
 // encode
 var token = jwt.encode(payload, secret);

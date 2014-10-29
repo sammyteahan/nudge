@@ -1,11 +1,14 @@
-var User = require('../models/user');
-var express = require('express');
-var router = express.Router();
+var User 	= require('../models/user'),
+	express = require('express'),
+	path    = require('path'),
+	isAuthenticated = ('../config/auth').isAuthenticated,
+	router  = express.Router();
 
 router.route('/users')
 	.post(function(req, res) {
 		var user = new User();
-		user.name = req.body.name;
+		user.email = req.body.email;
+		user.password = req.body.password;
 		user.save(function(err) {
 			if(err)
 				res.send(err);
