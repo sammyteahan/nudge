@@ -1,6 +1,7 @@
 var express 	= require('express'),
 	app 		= express(),
 	bodyParser 	= require('body-parser'),
+	path		= require('path'),
 	router 		= express.Router();
 
 var userRouter = require('./routers/userRoute');
@@ -19,12 +20,13 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-	res.send('Welcome to Nudge');
+	res.sendFile(path.resolve('../client/build/index.html'));
 });
 
 app.use('/api', router);
 
-var port = 3030;
+
+var port = 3000;
 app.listen(port);
 console.log('Gettin jiggy on port ' + port);
 
