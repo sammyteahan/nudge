@@ -5,6 +5,7 @@ var User 	= require('../models/user'),
 	router  = express.Router();
 
 router.route('/users')
+
 	.post(function(req, res) {
 		var user = new User();
 		user.email = req.body.email;
@@ -16,6 +17,7 @@ router.route('/users')
 			res.send('User Created');
 		});
 	})
+	
 	.get(function(req, res) {
 		User.find(function(err, users) {
 			if(err)
